@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Sprint.Linq")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Sprint.Linq is a free set of extensions for expression tree")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Sprint.Linq")]

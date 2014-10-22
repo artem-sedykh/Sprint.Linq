@@ -11,6 +11,9 @@
     <AssemblyName>Sprint.Linq</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NugetDir>$(SolutionDir)Tools\NuGet.exe</NugetDir>
+    <nuspecDir>$(SolutionDir)nuget-package\SprintLinqLib.nuspec</nuspecDir>
+    <OutputPackageDirectory>$(SolutionDir)nuget-package</OutputPackageDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,7 +49,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExpressionExpander.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\nuget-package\SprintLinqLib.nuspec">
+      <Link>nuget-package\SprintLinqLib.nuspec</Link>
+    </None>
+    <None Include="..\README.md">
+      <Link>README.md</Link>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild" Condition="'$(Configuration)' == 'Release'">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyVersion" />
+    </GetAssemblyIdentity>
+    <Exec Command="echo %(AssemblyVersion.Version)" />
+    <Message Text="Released " Importance="high" />
+    <Exec Command="&quot;$(NugetDir)&quot; pack &quot;$(nuspecDir)&quot; -Version %(AssemblyVersion.Version)  /OutputDirectory &quot;$(OutputPackageDirectory)&quot;" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
