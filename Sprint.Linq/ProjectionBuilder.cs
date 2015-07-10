@@ -36,7 +36,7 @@ namespace Sprint.Linq
             _parameter = Expression.Parameter(typeof(TSource), "entity");
         }
 
-        public ProjectionBuilder<TSource, TDestination> Register<TProperty>(Expression<Func<TSource, TProperty>> key,
+        public ProjectionBuilder<TSource, TDestination> Register<TProperty>(Expression<Func<TDestination, TProperty>> key,
             Expression<Func<TSource, TDestination>> binding)
         {
             var member = GetMemberInfo(key);
@@ -46,7 +46,7 @@ namespace Sprint.Linq
             return this;
         }
 
-        public Expression<Func<TSource, TDestination>> Build(params Expression<Func<TSource, object>>[] includes)
+        public Expression<Func<TSource, TDestination>> Build(params Expression<Func<TDestination, object>>[] includes)
         {
             if (includes == null)
                 return DefaultProjection;
