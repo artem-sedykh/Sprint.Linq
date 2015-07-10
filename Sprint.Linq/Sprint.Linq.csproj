@@ -46,6 +46,7 @@
     <Compile Include="LambdaExpressionDecorator.cs" />
     <Compile Include="Linq.cs" />
     <Compile Include="PredicateBuilder.cs" />
+    <Compile Include="ProjectionBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExpressionExpander.cs" />
   </ItemGroup>
