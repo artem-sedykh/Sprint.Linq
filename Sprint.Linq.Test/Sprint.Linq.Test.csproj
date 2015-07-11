@@ -44,6 +44,7 @@
     <Compile Include="ExpressionEqualityComparer.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="PredicateBuilderTest.cs" />
+    <Compile Include="MapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
