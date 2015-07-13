@@ -42,12 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Mapper\ExpressionMapper.cs" />
     <Compile Include="Mapper\IExpressionMapper.cs" />
     <Compile Include="Mapper\IInitIExpressionMapper.cs" />
     <Compile Include="Mapper\IMap.cs" />
     <Compile Include="Mapper\Mapper.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Extensions\ExpressionExtensions.cs" />
     <Compile Include="LambdaExpressionDecorator.cs" />
     <Compile Include="Linq.cs" />
     <Compile Include="PredicateBuilder.cs" />

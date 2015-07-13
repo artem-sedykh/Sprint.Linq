@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Sprint.Linq
 {
-    public static class Extensions
+    public static class ExpressionExtensions
     {
         public static LambdaExpressionDecorator<Func<T, bool>> Decorate<T>(this Expression<Func<T, bool>> expression)
         {

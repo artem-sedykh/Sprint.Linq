@@ -45,6 +45,8 @@ namespace Sprint.Linq
         private Expression<Func<TSource, TDestination>> Build(List<MemberBinding> bindings)
         {
             bindings.AddRange(GetBindings(_projection));
+
+            bindings = bindings.DistinctBy(x => x.Member.MetadataToken).ToList();
               
             var newExpression = Expression.MemberInit(Expression.New(typeof(TDestination)), bindings);
 
