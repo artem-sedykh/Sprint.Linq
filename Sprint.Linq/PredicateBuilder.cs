@@ -25,14 +25,37 @@
             return CreateLogicalBinaryExpression(left, right, ExpressionType.AndAlso);
         }
 
-        private static Expression<Func<T, bool>> CreateLogicalBinaryExpression<T>(Expression<Func<T, bool>> left,
-            Expression<Func<T, bool>> right, ExpressionType type)
-        {            
+        public static Expression<Func<TModel, bool>> Not<TModel>(this Expression<Func<TModel, bool>> left)
+        {
+            if (left == null)
+                throw new ArgumentNullException("left");
+
+            return Expression.Lambda<Func<TModel, bool>>(Expression.Not(left.Body), left.Parameters);
+        }
+
+        public static Expression<Func<TModel, bool>> AndNot<TModel>(this Expression<Func<TModel, bool>> left, Expression<Func<TModel, bool>> right)
+        {
+            return left.And(right.Not());
+        }
+
+        public static Expression<Func<TModel, bool>> OrNot<TModel>(this Expression<Func<TModel, bool>> left, Expression<Func<TModel, bool>> right)
+        {
+            return left.Or(right.Not());
+        }
+
+        private static Expression<Func<T, bool>> CreateLogicalBinaryExpression<T>(Expression<Func<T, bool>> left, Expression<Func<T, bool>> right, ExpressionType type)
+        {
+            if (left == null)
+                return right;
+
+            if (right == null)
+                return left;
+
             var parameters = left.Parameters;
 
             var invocationExpression = Expression.Invoke(right, parameters);
 
-            return Expression.Lambda<Func<T, bool>>(Expression.MakeBinary(type, left.Body, invocationExpression), parameters);
+            return Expression.Lambda<Func<T, bool>>(Expression.MakeBinary(type, left.Body, invocationExpression), parameters).Expand();
         }
 
         /// <summary>
