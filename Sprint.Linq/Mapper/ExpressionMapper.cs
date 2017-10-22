@@ -35,7 +35,7 @@ namespace Sprint.Linq
 
         public LambdaExpression Build(string[] includes)
         {
-            includes = includes ?? new string[0];
+            includes = includes ?? new string[0];            
 
             var bindings = _bindings.Where(b => includes.Contains(b.Key)).SelectMany(b => GetBindings(b.Value)).ToList();
          
@@ -59,6 +59,13 @@ namespace Sprint.Linq
             var memberInitExpression = (MemberInitExpression)expression;
 
             return memberInitExpression.Bindings;
+        }
+
+        public LambdaExpression BuildAll()
+        {
+            var bindings = _bindings.SelectMany(b => GetBindings(b.Value)).ToList();
+
+            return Build(bindings);
         }
     }
 }

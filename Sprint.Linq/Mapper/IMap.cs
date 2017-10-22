@@ -5,5 +5,7 @@ namespace Sprint.Linq
     internal interface IBuildMap        
     {
         LambdaExpression Build(string[] includes);
+
+        LambdaExpression BuildAll();
     }
 }
