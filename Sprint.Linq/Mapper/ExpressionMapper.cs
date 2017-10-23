@@ -67,5 +67,14 @@ namespace Sprint.Linq
 
             return Build(bindings);
         }
+
+        public LambdaExpression BuildAll(string[] excludeColumns)
+        {
+            excludeColumns = excludeColumns ?? new string[0];
+
+            var bindings = _bindings.Where(b => !excludeColumns.Contains(b.Key)).SelectMany(b => GetBindings(b.Value)).ToList();
+
+            return Build(bindings);
+        }
     }
 }

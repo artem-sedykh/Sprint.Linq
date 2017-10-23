@@ -7,5 +7,7 @@ namespace Sprint.Linq
         LambdaExpression Build(string[] includes);
 
         LambdaExpression BuildAll();
+
+        LambdaExpression BuildAll(string[] excludeColumns);
     }
 }
