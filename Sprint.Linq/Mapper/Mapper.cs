@@ -48,6 +48,17 @@ namespace Sprint.Linq
             return map.BuildAll() as Expression<Func<TSource, TDestination>>;
         }
 
+        public static Expression<Func<TSource, TDestination>> MapAll<TSource, TDestination>(params string[] excludeColumns)
+        {
+            var key = typeof(TSource).FullName + typeof(TDestination).FullName;
+
+            key = GetHashed(key);
+
+            var map = Maps[key];
+
+            return map.BuildAll(excludeColumns) as Expression<Func<TSource, TDestination>>;
+        }
+
         internal static string GetHashed(string text)
         {
             var ue = new UnicodeEncoding();
