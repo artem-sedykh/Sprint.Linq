@@ -58,6 +58,8 @@
                 case ExpressionType.LeftShift:
                 case ExpressionType.ExclusiveOr:
                     return VisitBinary((BinaryExpression)exp, parameters);
+                case ExpressionType.Index:
+                    return VisitIndexExpression((IndexExpression)exp, parameters);
                 case ExpressionType.TypeIs:
                     return VisitTypeIs((TypeBinaryExpression)exp, parameters);
                 case ExpressionType.Conditional:
@@ -129,6 +131,14 @@
             var operand = Visit(u.Operand, parameters);
 
             return operand != u.Operand ? Expression.MakeUnary(u.NodeType, operand, u.Type, u.Method) : u;
+        }
+
+        internal static Expression VisitIndexExpression(IndexExpression indexExpr, IDictionary<ParameterExpression, ParameterExpression> parameters)
+        {
+            var obj = Visit(indexExpr.Object, parameters);
+            var arguments = indexExpr.Arguments.Select(a => Visit(a, parameters)).ToArray();
+
+            return Expression.MakeIndex(obj, indexExpr.Indexer, arguments);
         }
 
         internal static Expression VisitBinary(BinaryExpression b, IDictionary<ParameterExpression, ParameterExpression> parameters)
