@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
+    <Version>1.2.9</Version>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>sign.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <Description>Sprint.Linq is a free set of extensions for expression tree</Description>
+    <Copyright>Copyright ©  2014</Copyright>
+    <Authors>Artem Sedykh</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Sprint.Linq</Company>
+
+  </PropertyGroup>
+
+  
+  
+</Project>
