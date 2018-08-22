@@ -2,7 +2,6 @@
   branches:
     except:
       - release
-  
 
   skip_tags: true
 
@@ -40,6 +39,6 @@
   deploy:
     provider: NuGet
     api_key:
-      secure: oy2dtjxdiujx3p6dahvqxuqdoclx3hxuzmojbyh7j3gl3y
+      secure: 642CQyNRZfe9fDFvEdV5ISN5ggxFvY82meXc2zwaj18sG96g4cR+sfi8xG/9enGC
       skip_symbols: false
       artifact: /.*\.nupkg/
