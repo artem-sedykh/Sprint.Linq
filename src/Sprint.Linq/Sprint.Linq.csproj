@@ -11,6 +11,10 @@
     <Authors>Artem Sedykh</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>Sprint.Linq</Company>
+    <PackageProjectUrl>https://github.com/artem-sedykh/Sprint.Linq</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/artem-sedykh/Sprint.Linq</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>expressiontree</PackageTags>
 
   </PropertyGroup>
 
